@@ -1,0 +1,18 @@
+{
+  "name": "Botzin",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/bot.js"
+  },
+  "dependencies": {
+    "bee-queue": "^1.2.3",
+    "discord.js": "^12.3.1",
+    "dotenv": "^8.2.0",
+    "ffmpeg-static": "^4.2.7",
+    "opusscript": "^0.0.7",
+    "ytdl-core": "^3.2.2",
+    "ytdl-core-discord": "^1.2.3"
+  }
+}
