@@ -6,8 +6,10 @@ const client = new Discord.Client();
 
 const config = require('./config.json');
 
+//importação açõs do bot
 const { bot } = require('./app/message/commands');
-const { yt } = require('./app/music/music');
+const { yt, pause, resume, stop, skip } = require('./app/music/music');
+const { leave } = require('./app/bot/leave');
 
 const hostname = process.env.HOSTNAME;
 const port = process.env.PORT;
@@ -42,6 +44,21 @@ client.on('message', async message => {
             break;
         case 'play':
             yt(message, args[0])
+            break
+        case 'pause':
+            pause(message);
+            break
+        case 'resume':
+            resume(message);
+            break
+        case 'stop':
+            stop(message);
+            break
+        case 'skip':
+            skip(message);
+            break
+        case 'leave':
+            leave(message);
             break
     }
 });
