@@ -1,12 +1,29 @@
+require('dotenv/config');
 const ytdl = require('ytdl-core');
+const Youtube = require('simple-youtube-api');
+
+const youtube = new Youtube(process.env.YOUTUBE_TOKEN);
 
 const links = [];
 let dispatcher;
 module.exports = {
     async yt(message, args) {
-        links.push(args);
-        if (links.length === 1) {
-            tocar(message);
+        if (ytdl.validateURL(args)) {
+            links.push(args);
+            if (links.length === 1) {
+                tocar(message);
+            }
+        } else {
+            youtube.searchVideos(args, 1).then(async resp => {
+                // console.log(resp);
+                let video = await youtube.getVideoByID(resp[0].id);
+                links.push(`https://www.youtube.com/watch?v=${video.id}`);
+                if (links.length === 1) {
+                    tocar(message);
+                }
+            }).catch(err => {
+                console.log(err)
+            })
         }
     },
     async pause(message) {
