@@ -14,13 +14,13 @@ module.exports = {
                 tocar(message);
             }
         } else {
-            youtube.searchVideos(args, 1).then(async resp => {
-                // console.log(resp);
-                let video = await youtube.getVideoByID(resp[0].id);
-                links.push(`https://www.youtube.com/watch?v=${video.id}`);
+            console.log(args);
+            youtube.searchVideos(args, 1, 'music').then(async resp => {
+                links.push(`https://www.youtube.com/watch?v=${resp[0].id}`);
                 if (links.length === 1) {
                     tocar(message);
                 }
+                console.log(resp[0].id);
             }).catch(err => {
                 console.log(err)
             })

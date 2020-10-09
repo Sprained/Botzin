@@ -42,8 +42,8 @@ client.on('message', async message => {
         case 'bot':
             bot(message);
             break;
-        case 'play':
-            yt(message, args[0])
+        case 'p':
+            yt(message, args)
             break
         case 'pause':
             pause(message);
